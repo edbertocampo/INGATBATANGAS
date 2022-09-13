@@ -1,0 +1,7 @@
+{
+  "name": "INGATBATANGAS",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
