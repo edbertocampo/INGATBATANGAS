@@ -3,13 +3,41 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    path: '',
+    redirectTo: 'welcome-screen',
+    pathMatch: 'full'
   },
   {
     path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
+    loadChildren: () => import('./user/usertabs/usertabs.module').then( m => m.UsertabsPageModule)
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./user/login/login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'welcome-screen',
+    loadChildren: () => import('./user/welcome/welcome-screen/welcome-screen.module').then( m => m.WelcomeScreenPageModule)
+  },
+  {
+    path: 'register',
+    loadChildren: () => import('./user/register/register.module').then( m => m.RegisterPageModule)
+  },
+  {
+    path: 'home',
+    loadChildren: () => import('./user/home/home.module').then( m => m.HomePageModule)
+  },
+  {
+    path: 'circle',
+    loadChildren: () => import('./user/circle/circle.module').then( m => m.CirclePageModule)
+  },
+  {
+    path: 'notification',
+    loadChildren: () => import('./user/notification/notification.module').then( m => m.NotificationPageModule)
+  },
+  {
+    path: 'profile',
+    loadChildren: () => import('./user/profile/profile.module').then( m => m.ProfilePageModule)
   },
 ];
 
