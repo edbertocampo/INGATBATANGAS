@@ -1,9 +1,17 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>register</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content class="ion-padding">
+  <h1>Create Account,</h1>
+  <h3>Sign up to get started!</h3>
 
-<ion-content>
+  <form>
+    <app-input label="First Name"></app-input>
+    <app-input label="Last Name"></app-input>
+    <app-input label="Email Address"></app-input>
+    <app-input label="Password" type="password"></app-input>
+    <app-input label="Confirm Password" type="password"></app-input>
 
+
+    <app-button label='Register'></app-button>
+  </form>
+
+  <p class="footer-text">Already have an account? <a routerLink="#">Sign In</a></p>
 </ion-content>

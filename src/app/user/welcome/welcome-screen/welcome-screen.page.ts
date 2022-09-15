@@ -12,7 +12,7 @@ export class WelcomeScreenPage implements OnInit {
 
   ngOnInit() {
     setTimeout(() => {
-      this.router.navigate(['usertabs']);
+      this.router.navigate(['login']);
     }, 3000)
   }
 
