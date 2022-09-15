@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "553473741746",
+    "project_id": "ingatbatangas-sy2022",
+    "storage_bucket": "ingatbatangas-sy2022.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:553473741746:android:343af9e1af7f6e7a4f8aab",
+        "android_client_info": {
+          "package_name": "com.cdrrmo.ingatbatangas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "553473741746-fdi4fk2uv5errn2roov55hm8asjn94kb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVfVbPfm9uIyIUgsEQAMhOmFDL6xGgXlc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "553473741746-fdi4fk2uv5errn2roov55hm8asjn94kb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
