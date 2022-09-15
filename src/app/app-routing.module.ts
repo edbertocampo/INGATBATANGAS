@@ -1,19 +1,29 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import {
+  redirectUnauthorizedTo,
+  redirectLoggedInTo,
+  canActivate,
+} from '@angular/fire/auth-guard';
+
+const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo (['login']);
+const redirectLoggedInToHome = () => redirectLoggedInTo(['']) 
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'welcome-screen',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
     path: '',
-    loadChildren: () => import('./user/usertabs/usertabs.module').then( m => m.UsertabsPageModule)
+    loadChildren: () => import('./user/usertabs/usertabs.module').then( m => m.UsertabsPageModule),
+    ...canActivate(redirectUnauthorizedToLogin)
   },
   {
     path: 'login',
-    loadChildren: () => import('./user/login/login/login.module').then( m => m.LoginPageModule)
+    loadChildren: () => import('./user/login/login/login.module').then( m => m.LoginPageModule),
+    ...canActivate(redirectLoggedInToHome)
   },
   {
     path: 'welcome-screen',
@@ -38,7 +48,8 @@ const routes: Routes = [
   {
     path: 'profile',
     loadChildren: () => import('./user/profile/profile.module').then( m => m.ProfilePageModule)
-  },  {
+  },
+  {
     path: 'forgotpass',
     loadChildren: () => import('./user/login/forgotpass/forgotpass.module').then( m => m.ForgotpassPageModule)
   },
