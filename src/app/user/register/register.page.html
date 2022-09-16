@@ -1,17 +1,34 @@
 <ion-content class="ion-padding">
-  <h1>Create Account,</h1>
-  <h3>Sign up to get started!</h3>
+  <div class="wrapper"></div>
+    <h1>Create Account,</h1>
+    <h3>Sign up to get started!</h3>
 
-  <form>
-    <app-input label="First Name"></app-input>
-    <app-input label="Last Name"></app-input>
-    <app-input label="Email Address"></app-input>
-    <app-input label="Password" type="password"></app-input>
-    <app-input label="Confirm Password" type="password"></app-input>
+  <!-- <form> -->
+    <ion-item lines="none">
+      <ion-label position="floating">First Name</ion-label>
+      <ion-input type="text" placeholder="First Name" ></ion-input>
+    </ion-item>
+
+    <ion-item lines="none">
+        <ion-label position="floating">Last Name</ion-label>
+        <ion-input type="text" placeholder="Last Name" ></ion-input>
+      </ion-item>
+
+      <ion-item lines="none">
+          <ion-label position="floating">Email</ion-label>
+          <ion-input type="text" placeholder="Email" ></ion-input>
+        </ion-item>
+
+        <ion-item lines="none">
+          <ion-label position="floating">Password</ion-label>
+          <ion-input type="text" placeholder="Password" ></ion-input>
+        </ion-item>
+    <!-- <ion-input label="Confirm Password" type="password"></ion-input> -->
 
 
-    <app-button label='Register'></app-button>
-  </form>
-
-  <p class="footer-text">Already have an account? <a routerLink="#">Sign In</a></p>
+    <ion-button (click)="SignUp()">Register</ion-button>
+  <!-- </form> -->
+    </div>
 </ion-content>
+
+<p class="footer-text" (click)="gotosignin()">Already have an account? Sign In</a></p>
