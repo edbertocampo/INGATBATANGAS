@@ -20,4 +20,6 @@ import { SharedModule } from 'src/app/component/shared.module';
   ],
   declarations: [LoginPage]
 })
+
+
 export class LoginPageModule {}

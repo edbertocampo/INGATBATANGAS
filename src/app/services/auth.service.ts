@@ -1,43 +1,50 @@
+import  { initializeApp, provideFirebaseApp } from '@angular/fire/app'
 import { Injectable } from '@angular/core';
-import { Auth } from '@angular/fire/auth';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import 'firebase/compat/firestore';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private auth: Auth) { }
+  constructor(
+    private firebaseAuth: AngularFireAuth) { }
 
-  async register({email, password}) {
-    try{
-      const user = await createUserWithEmailAndPassword(
-        this.auth,
-        email,
-        password
-      );
-      return user;
-    }catch (e) {
-      return null;
+    registerUser(value) {
+      return new Promise<any>((resolve, reject) => {
+  
+        this.firebaseAuth.createUserWithEmailAndPassword(value.email, value.password)
+          .then(
+            res => resolve(res),
+            err => reject(err))
+      })
+  
     }
 
-  }
-
-  async login({email, password}) {
-    try{
-      const user = await signInWithEmailAndPassword(
-        this.auth,
-        email,
-        password
-      );
-      return user;
-    }catch (e) {
-      return null;
-    }
-
+  loginUser(value) {
+    return new Promise<any>((resolve, reject) => {
+      this.firebaseAuth.signInWithEmailAndPassword(value.email, value.password)
+        .then(
+          res => resolve(res),
+          err => reject(err))
+    })
   }
 
   logout(){
-    return signOut(this.auth);
+    return new Promise<void>((resolve, reject) => {
+      if (this.firebaseAuth.currentUser) {
+        this.firebaseAuth.signOut()
+          .then(() => {
+            console.log("LOG Out");
+            resolve();
+          }).catch((error) => {
+            reject();
+          });
+      }
+    })
   }
+
 }

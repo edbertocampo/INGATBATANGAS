@@ -1,91 +1,83 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AlertController, LoadingController } from '@ionic/angular';
+import { AlertController, LoadingController, ToastController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
-
+import { NavController } from '@ionic/angular';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  credentials: FormGroup;
-  @Input() label: string;
-  @Input() type = 'text'; 
-
-  focused: boolean;
-
-  onBlur(event: any) {
-    const value = event.target.value;
-
-    if (!value) {
-      this.focused = false;
-    }
-  }
+  validations_form: FormGroup;
+  errorMessage: string = '';
 
 
   constructor(
-    private fb: FormBuilder,
+    private formBuilder: FormBuilder,
     private loadingController: LoadingController,
     private alertController: AlertController,
     private authService: AuthService,
     private router:  Router,
+    private navCtrl: NavController,
+    private toastCtrl: ToastController
   ) {}
 
-  get email(){
-    return this.credentials.get('email');
-  }
-
-  get password(){
-    return this.credentials.get('password');
-  }
-
   ngOnInit() {
-    this.credentials = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['',[Validators.required, Validators.minLength(6)]]
+    this.validations_form = this.formBuilder.group({
+      email: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
+      ])),
+      password: new FormControl('', Validators.compose([
+        Validators.minLength(5),
+        Validators.required
+      ])),
     });
   }
+  validation_messages = {
+    'email': [
+      { type: 'required', message: 'Email is required.' },
+      { type: 'pattern', message: 'Please enter a valid email.' }
+    ],
+    'password': [
+      { type: 'required', message: 'Password is required.' },
+      { type: 'minlength', message: 'Password must be at least 5 characters long.' }
+    ]
+  };
 
-  async register(){
-  const loading = await this.loadingController.create();
-  await loading.present();
 
-    const user = await this.authService.register(this.credentials.value);
-    await  loading.dismiss();
-
-    if (user){
-      this.router.navigateByUrl('usertabs', {replaceUrl: true});
-    }else{
-      this.showAlert('Registration Failed,', 'Please try again!');
-    }
+  loginUser(value) {
+    this.authService.loginUser(value)
+      .then((res) => {
+        console.log(res);
+        this.errorMessage = "";
+        this.navCtrl.navigateForward('usertabs');
+      })
+      .catch ((error)=>{
+        this.toast(error.message, 'danger');
+      })
   }
 
-  async login(){
-    const loading = await this.loadingController.create();
-  await loading.present();
-
-    const user = await this.authService.login(this.credentials.value);
-    await  loading.dismiss();
-
-    if (user){
-      this.router.navigateByUrl('usertabs', {replaceUrl: true});
-    }else{
-      this.showAlert('Login Failed,', 'Please try again!');
-    }
+  goToRegisterPage() {
+    this.router.navigate(['register']);
   }
-  
 
-  async showAlert(header, message){
-    const alert = await this.alertController.create({
-      header,
-      message,
-      buttons: ['OK'],
+  goToForgotPassPage() {
+    this.router.navigate(['forgotpass']);
+  }
+
+  async toast(message, status)
+  {
+    const toast = await  this.toastCtrl.create({
+      message: message,
+      position: 'top',
+      color: status,
+      duration: 2000
     });
-    await alert.present();
+    toast.present();
   }
 
 }
-
 

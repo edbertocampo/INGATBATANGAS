@@ -1,0 +1,6 @@
+<ion-popover #popover [isOpen]="isOpen" (didDismiss)="isOpen = false">
+  <ng-template>
+    <label class="error-message">{{errorMessage}}</label>
+    <label class="success-message">{{successMessage}}</label>
+  </ng-template>
+</ion-popover>

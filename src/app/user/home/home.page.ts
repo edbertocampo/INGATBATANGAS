@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
 })
-export class HomePage implements OnInit {
+export class HomePage  {
+
+  @ViewChild('audioPlayer') audio;
 
   constructor() { }
 
-  ngOnInit() {
+  imageClicked() {
+    this.audio.nativeElement.play();
   }
 
 }

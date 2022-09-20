@@ -1,9 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Reset Your Password</ion-title>
+  </ion-toolbar>
+</ion-header>
 <ion-content>
-  <center><h1>Forgot<br>Password?</h1>
-  <h4>New Password</h4></center>
-  <ion-item>
-    <ion-label position="stacked">PLEASE ENTER YOUR EMAIL</ion-label>
-    <ion-input placeholder="Email"></ion-input>
-  </ion-item>
-  <br><center><ion-button>send</ion-button></center>
+  
+    <ion-item lines="full">
+      <ion-label position="floating">Email</ion-label>
+      <ion-input type="email" [(ngModel)]="email"></ion-input>
+    </ion-item>
+    <ion-row>
+      <ion-col>
+        <ion-button type="submit" expand="block"(click)="resetPassword()">Reset Password</ion-button>
+      </ion-col>
+    </ion-row>
+
+
+    <small >
+      Please provide the username or email address that you used when you signed
+      up for your INGAT BATANGAS account.
+    </small>
+
+    <p class="footer-text" style="position: absolute; bottom: 5px;">Already have an account? <a (click)="goLoginPage()">Sign In</a></p>
+
 </ion-content>

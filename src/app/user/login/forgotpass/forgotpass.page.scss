@@ -1,0 +1,38 @@
+.error-message{
+    text-align: center;
+    margin: auto;
+}
+ion-item{
+    width: 90%;
+    margin-top: 30%;
+    margin-left: 5%;
+}
+
+ion-button {
+    --box-shadow: none;
+    --border-radius: 10px;
+    --background: linear-gradient(
+      90deg,
+      rgb(148, 13, 13) 0%,
+      rgba(254, 171, 142, 1) 100%
+    );
+    height: 48px;
+    font-size: 1rem;
+    color: #fff;
+    margin-bottom: 0.5rem;
+    text-transform: initial;
+    margin-left: 10%;
+    margin-top: 15%;
+    width: 80%;
+  }
+.footer-text {
+    text-align: center;
+    font-size: 17px;
+    margin-top: 35%;
+  
+    a {
+      text-decoration: none;
+      font-weight: 600;
+      color: #fa578e;
+    }
+  }
