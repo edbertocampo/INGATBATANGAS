@@ -16,7 +16,7 @@ export class ProfilePage  {
     this.auth.signOut()
       .then(res => {
         console.log(res);
-        this.navCtrl.navigateBack('');
+        this.navCtrl.navigateBack('login');
       })
       .catch(error => {
         console.log(error);

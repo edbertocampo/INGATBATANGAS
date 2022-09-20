@@ -8,6 +8,8 @@ import { CirclePageRoutingModule } from './circle-routing.module';
 
 import { CirclePage } from './circle.page';
 
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -15,6 +17,8 @@ import { CirclePage } from './circle.page';
     IonicModule,
     CirclePageRoutingModule
   ],
-  declarations: [CirclePage]
+  declarations: [CirclePage],
+
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class CirclePageModule {}

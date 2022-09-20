@@ -13,7 +13,8 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AuthService } from 'src/app/services/auth.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
-
+import { LocationAccuracy } from '@awesome-cordova-plugins/location-accuracy/ngx';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -28,7 +29,10 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
     ReactiveFormsModule,
     AngularFireAuthModule
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy  } ,
+                LocationAccuracy],
+
   bootstrap: [AppComponent],
 })
 export class AppModule {}

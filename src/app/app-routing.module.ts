@@ -5,25 +5,29 @@ import {
   redirectLoggedInTo,
   canActivate,
 } from '@angular/fire/auth-guard';
+import { UsertabsPage } from './user/usertabs/usertabs.page';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo (['login']);
-const redirectLoggedInToHome = () => redirectLoggedInTo(['']) 
+const redirectLoggedInToHome = () => redirectLoggedInTo(['usertabs']) 
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
-    pathMatch: 'full'
-  },
-  {
-    path: '',
-    loadChildren: () => import('./user/usertabs/usertabs.module').then( m => m.UsertabsPageModule),
-    ...canActivate(redirectUnauthorizedToLogin)
+    redirectTo: 'welcome-screen',
+    pathMatch: 'full',
+    
+    
   },
   {
     path: 'login',
     loadChildren: () => import('./user/login/login/login.module').then( m => m.LoginPageModule),
     ...canActivate(redirectLoggedInToHome)
+  },
+  {
+    path: 'usertabs',
+    loadChildren: () => import('./user/usertabs/usertabs.module').then( m => m.UsertabsPageModule),
+    ...canActivate(redirectUnauthorizedToLogin)
+
   },
   {
     path: 'welcome-screen',
@@ -35,7 +39,7 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    loadChildren: () => import('./user/home/home.module').then( m => m.HomePageModule)
+    loadChildren: () => import('./user/home/home.module').then( m => m.HomePageModule),
   },
   {
     path: 'circle',
